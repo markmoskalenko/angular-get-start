@@ -1,27 +1,58 @@
-# MyApp
+# Donbilet
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.4.
+Проект для..
 
-## Development server
+## Режим разработчика
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+`ng serve --open`
 
-## Code scaffolding
+## Генерация новой страницы
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+##### Генерация модуля страницы
+`ng g module pages/main`
+где main название страницы
 
-## Build
+##### Генерация компонента страницы
+`ng g component pages/main` 
+где main название страницы
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Running unit tests
+## Генерация UI компонентов
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+##### Генерация модуля страницы
 
-## Running end-to-end tests
+module-name и component-name всегда одинаковые 
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+`ng g module ui/module-name`
+где main название страницы
 
-## Further help
+##### Генерация компонента страницы
+`ng g component ui/component-name` 
+где main название страницы
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+После генерации в модуле компонента обязательно добавить секцию export с названием компонента
+
+```
+@NgModule({
+  declarations: [LogoComponent],
+  exports: [LogoComponent],
+  imports: [
+    CommonModule
+  ]
+})
+```
+
+После того как сделали модуль компонента его нужно подключить на нужной странице или в нужном зависимом компоненте. Это делается через секцию import модуля
+
+Вот пример подключения модулей на странице main
+```
+@NgModule({
+  imports: [
+    CommonModule,
+    MainRoutingModule,
+    FilterModule, <---
+    HeaderModule, <---
+    FooterModule, <---
+  ]
+})
+```
